@@ -23,11 +23,23 @@ export function Header({
   cart,
   publicStoreDomain,
 }: HeaderProps) {
-  const {shop, menu} = header;
+  const {menu} = header;
+  const menuItems = (menu || FALLBACK_HEADER_MENU).items;
+  const contactItem = menuItems.find(
+    (item) => item.title.toLowerCase() === 'contact' && item.url,
+  );
+  const contactUrl = contactItem
+    ? resolveMenuItemUrl(
+        contactItem,
+        header.shop.primaryDomain.url,
+        publicStoreDomain,
+      )
+    : '/pages/contact';
+
   return (
     <header className="header">
-      <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-        <strong>{shop.name}</strong>
+      <NavLink prefetch="intent" to="/" end>
+        <strong>Jewels by Tulz</strong>
       </NavLink>
       <HeaderMenu
         menu={menu}
@@ -35,7 +47,7 @@ export function Header({
         primaryDomainUrl={header.shop.primaryDomain.url}
         publicStoreDomain={publicStoreDomain}
       />
-      <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
+      <HeaderCtas cart={cart} contactUrl={contactUrl} />
     </header>
   );
 }
@@ -55,28 +67,30 @@ export function HeaderMenu({
   const {close} = useAside();
 
   return (
-    <nav className={className} role="navigation">
+    <nav
+      className={className}
+      role="navigation"
+      aria-label={viewport === 'desktop' ? 'Main navigation' : 'Mobile navigation'}
+    >
       {viewport === 'mobile' && (
         <NavLink
           end
           onClick={close}
           prefetch="intent"
-          style={activeLinkStyle}
           to="/"
         >
           Home
         </NavLink>
       )}
       {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
+        if (item.title.toLowerCase() === 'contact') return null;
         if (!item.url) return null;
 
-        // if the url is internal, we strip the domain
-        const url =
-          item.url.includes('myshopify.com') ||
-          item.url.includes(publicStoreDomain) ||
-          item.url.includes(primaryDomainUrl)
-            ? new URL(item.url).pathname
-            : item.url;
+        const url = resolveMenuItemUrl(
+          item,
+          primaryDomainUrl,
+          publicStoreDomain,
+        );
         return (
           <NavLink
             className="header-menu-item"
@@ -84,30 +98,39 @@ export function HeaderMenu({
             key={item.id}
             onClick={close}
             prefetch="intent"
-            style={activeLinkStyle}
+            style={viewport === 'desktop' ? activeLinkStyle : undefined}
             to={url}
           >
             {item.title}
           </NavLink>
         );
       })}
+      {viewport === 'desktop' && (
+        <>
+          <span className="header-menu-sample-item">Rings</span>
+          <span className="header-menu-sample-item">Necklaces</span>
+          <span className="header-menu-sample-item">Earrings</span>
+          <span className="header-menu-sample-item">Bracelets</span>
+        </>
+      )}
     </nav>
   );
 }
 
 function HeaderCtas({
-  isLoggedIn,
   cart,
-}: Pick<HeaderProps, 'isLoggedIn' | 'cart'>) {
+  contactUrl,
+}: Pick<HeaderProps, 'cart'> & {contactUrl: string}) {
   return (
-    <nav className="header-ctas" role="navigation">
+    <nav className="header-ctas" aria-label="Store actions">
       <HeaderMenuMobileToggle />
-      <NavLink prefetch="intent" to="/account" style={activeLinkStyle}>
-        <Suspense fallback="Sign in">
-          <Await resolve={isLoggedIn} errorElement="Sign in">
-            {(isLoggedIn) => (isLoggedIn ? 'Account' : 'Sign in')}
-          </Await>
-        </Suspense>
+      <NavLink
+        className="header-contact-link"
+        prefetch="intent"
+        to={contactUrl}
+        style={activeLinkStyle}
+      >
+        Contact
       </NavLink>
       <SearchToggle />
       <CartToggle cart={cart} />
@@ -121,6 +144,7 @@ function HeaderMenuMobileToggle() {
     <button
       className="header-menu-mobile-toggle reset"
       onClick={() => open('mobile')}
+      aria-label="Open menu"
     >
       <h3>☰</h3>
     </button>
@@ -130,7 +154,11 @@ function HeaderMenuMobileToggle() {
 function SearchToggle() {
   const {open} = useAside();
   return (
-    <button className="reset" onClick={() => open('search')}>
+    <button
+      className="header-search-toggle reset"
+      onClick={() => open('search')}
+      aria-label="Open search"
+    >
       Search
     </button>
   );
@@ -173,6 +201,18 @@ function CartBanner() {
   const originalCart = useAsyncValue() as CartApiQueryFragment | null;
   const cart = useOptimisticCart(originalCart);
   return <CartBadge count={cart?.totalQuantity ?? 0} />;
+}
+
+function resolveMenuItemUrl(
+  item: {url: string},
+  primaryDomainUrl: string,
+  publicStoreDomain: string,
+) {
+  return item.url.includes('myshopify.com') ||
+    item.url.includes(publicStoreDomain) ||
+    item.url.includes(primaryDomainUrl)
+    ? new URL(item.url).pathname
+    : item.url;
 }
 
 const FALLBACK_HEADER_MENU = {
@@ -219,13 +259,12 @@ const FALLBACK_HEADER_MENU = {
 
 function activeLinkStyle({
   isActive,
-  isPending,
 }: {
   isActive: boolean;
   isPending: boolean;
 }) {
   return {
     fontWeight: isActive ? 'bold' : undefined,
-    color: isPending ? 'grey' : 'black',
+    color: 'white',
   };
 }

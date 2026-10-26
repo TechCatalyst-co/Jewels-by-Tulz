@@ -1,16 +1,19 @@
 import {Await, useLoaderData, Link} from 'react-router';
 import type {Route} from './+types/_index';
-import {Suspense} from 'react';
-import {Image} from '@shopify/hydrogen';
-import type {
-  FeaturedCollectionFragment,
-  RecommendedProductsQuery,
-} from 'storefrontapi.generated';
+import {Suspense, useEffect, useState} from 'react';
+import type {RecommendedProductsQuery} from 'storefrontapi.generated';
 import {ProductItem} from '~/components/ProductItem';
 import {MockShopNotice} from '~/components/MockShopNotice';
 
 export const meta: Route.MetaFunction = () => {
-  return [{title: 'Hydrogen | Home'}];
+  return [
+    {title: 'Jewels by Tulz | Fine Jewelry for Every Day'},
+    {
+      name: 'description',
+      content:
+        'Discover thoughtfully designed jewelry made to be worn, loved, and lived in.',
+    },
+  ];
 };
 
 export async function loader(args: Route.LoaderArgs) {
@@ -60,38 +63,148 @@ function loadDeferredData({context}: Route.LoaderArgs) {
 
 export default function Homepage() {
   const data = useLoaderData<typeof loader>();
+  const collectionUrl = data.featuredCollection
+    ? `/collections/${data.featuredCollection.handle}`
+    : '/collections/all';
+
   return (
     <div className="home">
       {data.isShopLinked ? null : <MockShopNotice />}
-      <FeaturedCollection collection={data.featuredCollection} />
+      <section className="home-hero" aria-labelledby="home-hero-heading">
+        <div className="home-hero-copy">
+          <p className="eyebrow">Jewels by Tulz · Fine jewelry</p>
+          <h1 id="home-hero-heading">A little brilliance, every day.</h1>
+          <p className="home-hero-description">
+            Thoughtfully chosen pieces for the moments that make a life yours.
+          </p>
+          <Link className="button-primary" to={collectionUrl}>
+            Discover the collection
+          </Link>
+          <p className="hero-note">Made to be worn. Made to be kept.</p>
+        </div>
+        <Suspense
+          fallback={
+            <HeroImageFallback />
+          }
+        >
+          <Await resolve={data.recommendedProducts}>
+            {(response) => (
+              <HeroSlideshow
+                products={response?.products.nodes.filter(
+                  (product) => product.featuredImage,
+                ) ?? []}
+              />
+            )}
+          </Await>
+        </Suspense>
+      </section>
+
+      <div className="brand-promises" aria-label="Jewels by Tulz values">
+        <p>Considered design</p>
+        <span aria-hidden="true" />
+        <p>Made for everyday</p>
+        <span aria-hidden="true" />
+        <p>Chosen to last</p>
+      </div>
+
       <RecommendedProducts products={data.recommendedProducts} />
+
+      <section className="home-story" aria-labelledby="home-story-heading">
+        <p className="eyebrow">A more personal kind of luxury</p>
+        <h2 id="home-story-heading">For the days worth remembering.</h2>
+        <p>
+          The best pieces don’t wait for a special occasion. They become part of
+          the story you’re already wearing.
+        </p>
+        <Link className="button-secondary" to='/collections/all'>
+          Find your piece
+        </Link>
+      </section>
     </div>
   );
 }
 
-function FeaturedCollection({
-  collection,
+function HeroSlideshow({
+  products,
 }: {
-  collection: FeaturedCollectionFragment;
+  products: NonNullable<RecommendedProductsQuery>['products']['nodes'];
 }) {
-  if (!collection) return null;
-  const image = collection?.image;
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    if (products.length < 2 || isPaused) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const interval = window.setInterval(() => {
+      setActiveIndex((index) => (index + 1) % products.length);
+    }, 5000);
+
+    return () => window.clearInterval(interval);
+  }, [isPaused, products.length]);
+
+  const product = products[activeIndex];
+  const image = product?.featuredImage;
+
+  if (!product || !image) return <HeroImageFallback />;
+
   return (
-    <Link
-      className="featured-collection"
-      to={`/collections/${collection.handle}`}
-    >
-      {image && (
-        <div className="featured-collection-image">
-          <Image
-            data={image}
-            sizes="100vw"
-            alt={image.altText || collection.title}
-          />
+    <div className="home-hero-image-wrap">
+      <Link
+        className="home-hero-slide-link"
+        to="/collections/all"
+        aria-label={`Shop the catalog, featuring ${product.title}`}
+      >
+        <img
+          className="home-hero-image"
+          src={image.url}
+          alt={image.altText || product.title}
+          loading="eager"
+        />
+        <span className="hero-image-caption">{product.title}</span>
+      </Link>
+      {products.length > 1 && (
+        <div className="hero-slideshow-controls" aria-label="Slideshow controls">
+          <button
+            type="button"
+            onClick={() => setIsPaused((paused) => !paused)}
+            aria-pressed={isPaused}
+          >
+            {isPaused ? 'Play' : 'Pause'}
+          </button>
+          {products.map((slide, index) => (
+            <button
+              key={slide.id}
+              type="button"
+              className={index === activeIndex ? 'is-active' : undefined}
+              onClick={() => setActiveIndex(index)}
+              aria-label={`Show ${slide.title}`}
+              aria-current={index === activeIndex ? 'true' : undefined}
+            />
+          ))}
         </div>
       )}
-      <h1>{collection.title}</h1>
-    </Link>
+    </div>
+  );
+}
+
+function HeroImageFallback() {
+  return (
+    <div className="home-hero-image-wrap">
+      <Link
+        className="home-hero-slide-link"
+        to="/collections/all"
+        aria-label="Explore the jewelry catalog"
+      >
+        <img
+          className="home-hero-image"
+          src="/jewelry-campaign.jpg"
+          alt="Sculptural gold earrings resting on pale stone"
+          loading="eager"
+        />
+        <span className="hero-image-caption">The everyday, elevated</span>
+      </Link>
+    </div>
   );
 }
 
@@ -105,21 +218,36 @@ function RecommendedProducts({
       className="recommended-products"
       aria-labelledby="recommended-products"
     >
-      <h2 id="recommended-products">Recommended Products</h2>
+      <div className="section-heading">
+        <div>
+          <p className="eyebrow">A few forever favorites</p>
+          <h2 id="recommended-products">The pieces you’ll reach for.</h2>
+        </div>
+        <Link className="text-link" to="/collections/all">
+          View all jewelry <span aria-hidden="true">→</span>
+        </Link>
+      </div>
       <Suspense fallback={<div>Loading...</div>}>
         <Await resolve={products}>
           {(response) => (
             <div className="recommended-products-grid">
-              {response
+              {response?.products.nodes.length
                 ? response.products.nodes.map((product) => (
-                    <ProductItem key={product.id} product={product} />
+                    <ProductItem
+                      key={product.id}
+                      product={product}
+                      loading="lazy"
+                    />
                   ))
-                : null}
+                : (
+                    <p className="products-empty">
+                      New pieces are on their way.
+                    </p>
+                  )}
             </div>
           )}
         </Await>
       </Suspense>
-      <br />
     </section>
   );
 }
