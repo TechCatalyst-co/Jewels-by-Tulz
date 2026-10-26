@@ -130,10 +130,9 @@ function HeroSlideshow({
   products: NonNullable<RecommendedProductsQuery>['products']['nodes'];
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
-    if (products.length < 2 || isPaused) return;
+    if (products.length < 2) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const interval = window.setInterval(() => {
@@ -141,7 +140,12 @@ function HeroSlideshow({
     }, 5000);
 
     return () => window.clearInterval(interval);
-  }, [isPaused, products.length]);
+  }, [products.length]);
+
+  const goPrev = () =>
+    setActiveIndex((index) => (index - 1 + products.length) % products.length);
+  const goNext = () =>
+    setActiveIndex((index) => (index + 1) % products.length);
 
   const product = products[activeIndex];
   const image = product?.featuredImage;
@@ -167,21 +171,20 @@ function HeroSlideshow({
         <div className="hero-slideshow-controls" aria-label="Slideshow controls">
           <button
             type="button"
-            onClick={() => setIsPaused((paused) => !paused)}
-            aria-pressed={isPaused}
+            className="hero-slideshow-arrow hero-slideshow-arrow-prev"
+            onClick={goPrev}
+            aria-label="Previous slide"
           >
-            {isPaused ? 'Play' : 'Pause'}
+            ‹
           </button>
-          {products.map((slide, index) => (
-            <button
-              key={slide.id}
-              type="button"
-              className={index === activeIndex ? 'is-active' : undefined}
-              onClick={() => setActiveIndex(index)}
-              aria-label={`Show ${slide.title}`}
-              aria-current={index === activeIndex ? 'true' : undefined}
-            />
-          ))}
+          <button
+            type="button"
+            className="hero-slideshow-arrow hero-slideshow-arrow-next"
+            onClick={goNext}
+            aria-label="Next slide"
+          >
+            ›
+          </button>
         </div>
       )}
     </div>

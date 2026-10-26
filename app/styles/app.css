@@ -646,6 +646,7 @@ button.reset:hover:not(:has(> *)) {
   object-fit: cover;
   object-position: center 56%;
   width: 100%;
+  opacity: 0.9;
   animation: hero-slide-in 700ms ease both;
 }
 
@@ -661,14 +662,17 @@ button.reset:hover:not(:has(> *)) {
 
 .hero-slideshow-controls {
   align-items: center;
-  bottom: 16px;
+  bottom: 0;
   display: flex;
-  gap: 8px;
-  left: 16px;
+  justify-content: space-between;
+  left: 0;
+  pointer-events: none;
   position: absolute;
+  right: 0;
+  top: 0;
 }
 
-.hero-slideshow-controls button {
+.hero-slideshow-controls .hero-slideshow-arrow {
   align-items: center;
   background: var(--color-background);
   border: 0;
@@ -677,22 +681,20 @@ button.reset:hover:not(:has(> *)) {
   cursor: pointer;
   display: inline-flex;
   font-family: var(--font-body);
-  font-size: 10px;
-  height: 28px;
+  font-size: 16px;
+  height: 32px;
   justify-content: center;
-  min-width: 28px;
-  padding: 0 8px;
-}
-
-.hero-slideshow-controls button:not(:first-child) {
-  border-radius: 50%;
-  min-width: 10px;
+  min-width: 32px;
   padding: 0;
-  width: 10px;
+  pointer-events: auto;
 }
 
-.hero-slideshow-controls button.is-active {
-  background: var(--color-accent-gold);
+.hero-slideshow-arrow-prev {
+  margin-left: 8px;
+}
+
+.hero-slideshow-arrow-next {
+  margin-right: 8px;
 }
 
 @keyframes hero-slide-in {
