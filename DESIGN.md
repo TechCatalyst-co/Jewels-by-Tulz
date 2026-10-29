@@ -17,32 +17,32 @@ colors:
   border-subtle: '#E8D8B0'
 typography:
   display:
-    family: 'SyndicatGrotesk'
+    family: 'Syne'
     size: 32px
     weight: 400
     line-height: 1.2
   heading:
-    family: 'SyndicatGrotesk'
+    family: 'Syne'
     size: 24px
     weight: 400
     line-height: 1.2
   body:
-    family: 'SimonMono'
+    family: 'Space Mono'
     size: 16px
     weight: 400
     line-height: 1.5
   small:
-    family: 'SimonMono'
+    family: 'Space Mono'
     size: 14px
     weight: 400
     line-height: 1.5
   caption:
-    family: 'SimonMono'
+    family: 'Space Mono'
     size: 12px
     weight: 400
     line-height: 1.5
   utility:
-    family: 'SimonMono'
+    family: 'Space Mono'
     size: 10px
     weight: 400
     line-height: 1.5
@@ -90,12 +90,12 @@ layout:
 ## 1. Visual Theme & Atmosphere
 Jewels by Tulz's design system exudes a refined and approachable luxury, achieved through a minimalist aesthetic that prioritizes product imagery and sophisticated typography. The primary palette consists of rich emerald green (`#0F5233`) on warm cream (`#FAF9F5`) and pure white backgrounds (`#FFFFFF`), creating a high-contrast foundation that allows the jewelry to stand out. An elegant warm metallic gold (`#C29B38`) is sparingly used for product highlights and subtle brand cues, reinforcing the precious metal and emerald theme.
 
-The brand's visual identity is further defined by its distinctive typographic pairing: the modern sans-serif `SyndicatGrotesk` for headings and the classic monospace `SimonMono` for body text and utility information. This combination creates a unique blend of contemporary sharpness and timeless elegance. Photography is central, featuring high-quality, aspirational product shots and lifestyle imagery that convey a sense of everyday wearability. Subtle CSS animations, such as `onetrust-fade-in` and `ease-in` transitions, provide smooth, understated interactivity, maintaining a premium user experience.
+The brand's visual identity is further defined by its distinctive typographic pairing: the modern sans-serif `Syne` for headings and the classic monospace `Space Mono` for body text and utility information. This combination creates a unique blend of contemporary sharpness and timeless elegance. Photography is central, featuring high-quality, aspirational product shots and lifestyle imagery that convey a sense of everyday wearability. Subtle CSS animations, such as `onetrust-fade-in` and `ease-in` transitions, provide smooth, understated interactivity, maintaining a premium user experience.
 
 **Key Characteristics**:
 -   Emerald green (`#0F5233`) and warm cream (`#FAF9F5`) palette.
 -   Minimalist layout with generous spacing (`32px` to `64px` section padding).
--   Dual typeface strategy: `SyndicatGrotesk` headings, `SimonMono` body.
+-   Dual typeface strategy: `Syne` headings, `Space Mono` body.
 -   Subtle gold accent (`#C29B38`) for product highlights.
 -   Clean line iconography for navigation and actions.
 -   High-quality product and lifestyle photography.
@@ -128,21 +128,21 @@ Jewels by Tulz's color palette is intentionally restrained, focusing on a strong
 
 ## 3. Typography Rules
 -   **Font Family**:
-    -   Primary Headings: `'SyndicatGrotesk'`, `ui-sans-serif`, `sans-serif`
-    -   Body & Utility: `'SimonMono'`, `'Courier New'`, `Courier`, `monospace`
+    -   Primary Headings: `'Syne'`, `ui-sans-serif`, `sans-serif`
+    -   Body & Utility: `'Space Mono'`, `'Courier New'`, `Courier`, `monospace`
 -   **Hierarchy**:
-    -   **Display/H1**: `SyndicatGrotesk` `32px` `400` · line-height `1.2` · tracking `0.05em` · Used for prominent page titles and hero statements.
-    -   **H2**: `SyndicatGrotesk` `24px` `400` · line-height `1.2` · tracking `0.05em` · Used for major section headings.
-    -   **Body**: `SimonMono` `16px` `400` · line-height `1.5` · tracking `0` · Standard text for paragraphs and detailed content.
-    -   **Small**: `SimonMono` `14px` `400` · line-height `1.5` · tracking `0` · Used for product descriptions, secondary information, and form labels.
-    -   **Caption**: `SimonMono` `12px` `400` · line-height `1.5` · tracking `0` · Used for metadata, footnotes, and very small informational text.
-    -   **Utility/Code**: `SimonMono` `10px` `400` · line-height `1.5` · tracking `0.02em` · Used for very small utility text or code snippets.
+    -   **Display/H1**: `Syne` `32px` `400` · line-height `1.2` · tracking `0.05em` · Used for prominent page titles and hero statements.
+    -   **H2**: `Syne` `24px` `400` · line-height `1.2` · tracking `0.05em` · Used for major section headings.
+    -   **Body**: `Space Mono` `16px` `400` · line-height `1.5` · tracking `0` · Standard text for paragraphs and detailed content.
+    -   **Small**: `Space Mono` `14px` `400` · line-height `1.5` · tracking `0` · Used for product descriptions, secondary information, and form labels.
+    -   **Caption**: `Space Mono` `12px` `400` · line-height `1.5` · tracking `0` · Used for metadata, footnotes, and very small informational text.
+    -   **Utility/Code**: `Space Mono` `10px` `400` · line-height `1.5` · tracking `0.02em` · Used for very small utility text or code snippets.
 -   **Principles**:
-    -   **Elegant Contrast**: Pair the modern sans-serif `SyndicatGrotesk` for impactful headings with the classic monospace `SimonMono` for readability in body text.
-    -   **Clear Hierarchy**: Utilize distinct font sizes and weights from `SyndicatGrotesk` for headings to establish a clear visual hierarchy, from `32px` H1s to `24px` H2s.
-    -   **Legible Body**: Employ `SimonMono` at `16px` with a `1.5` line-height for all body text to ensure maximum readability and a spacious feel.
+    -   **Elegant Contrast**: Pair the modern sans-serif `Syne` for impactful headings with the classic monospace `Space Mono` for readability in body text.
+    -   **Clear Hierarchy**: Utilize distinct font sizes and weights from `Syne` for headings to establish a clear visual hierarchy, from `32px` H1s to `24px` H2s.
+    -   **Legible Body**: Employ `Space Mono` at `16px` with a `1.5` line-height for all body text to ensure maximum readability and a spacious feel.
     -   **Subtle Tracking**: Apply a slight letter-spacing of `0.05em` to headings for an open, airy feel, while body text maintains standard tracking.
-    -   **Consistent Utility**: Use `SimonMono` with `0.02em` tracking for all small utility text, maintaining brand consistency across minor elements.
+    -   **Consistent Utility**: Use `Space Mono` with `0.02em` tracking for all small utility text, maintaining brand consistency across minor elements.
 
 ## 4. Component Stylings
 
@@ -156,7 +156,7 @@ A high-contrast button with a solid emerald green background and white text, use
 .button-primary {
   background-color: var(--color-primary, #0F5233);
   color: var(--color-text-inverse, #FFFFFF);
-  font-family: var(--typography-small-family, 'SimonMono');
+  font-family: var(--typography-small-family, 'Space Mono');
   font-size: var(--typography-small-size, 14px);
   font-weight: var(--typography-small-weight, 400);
   padding: 12px 24px; /* inferred from screenshot */
@@ -187,7 +187,7 @@ A transparent button with an emerald green border and text, used for secondary a
 .button-secondary {
   background-color: transparent;
   color: var(--color-primary, #0F5233);
-  font-family: var(--typography-small-family, 'SimonMono');
+  font-family: var(--typography-small-family, 'Space Mono');
   font-size: var(--typography-small-size, 14px);
   font-weight: var(--typography-small-weight, 400);
   padding: 12px 24px; /* inferred from screenshot */
@@ -224,7 +224,7 @@ A text-only button with no background or border, primarily used for subtle actio
 .button-ghost {
   background-color: transparent;
   color: var(--color-primary, #0F5233);
-  font-family: var(--typography-small-family, 'SimonMono');
+  font-family: var(--typography-small-family, 'Space Mono');
   font-size: var(--typography-small-size, 14px);
   font-weight: var(--typography-small-weight, 400);
   padding: 8px 16px; /* inferred from screenshot */
@@ -281,7 +281,7 @@ A standard text input with a light border and ample padding. On focus, a visible
 .input-text {
   background-color: var(--color-background-light, #FFFFFF);
   color: var(--color-text-primary, #1A1D1A);
-  font-family: var(--typography-small-family, 'SimonMono');
+  font-family: var(--typography-small-family, 'Space Mono');
   font-size: var(--typography-small-size, 14px);
   font-weight: var(--typography-small-weight, 400);
   padding: 10px 12px; /* inferred from screenshot */
@@ -313,7 +313,7 @@ Simple, clear labels for form fields, using the secondary text color.
 .form-label {
   display: block;
   color: var(--color-text-secondary, #1A1D1A);
-  font-family: var(--typography-small-family, 'SimonMono');
+  font-family: var(--typography-small-family, 'Space Mono');
   font-size: var(--typography-small-size, 14px);
   font-weight: var(--typography-small-weight, 400);
   margin-bottom: var(--spacing-xs, 4px); /* inferred from screenshot */
@@ -388,7 +388,7 @@ Custom-styled checkboxes and radio buttons with a distinct checked state.
 
 .checkbox-label, .radio-label {
   color: var(--color-text-primary, #1A1D1A);
-  font-family: var(--typography-small-family, 'SimonMono');
+  font-family: var(--typography-small-family, 'Space Mono');
   font-size: var(--typography-small-size, 14px);
   font-weight: var(--typography-small-weight, 400);
 }
@@ -408,7 +408,7 @@ A minimalist top navigation bar with a deep charcoal background and white text, 
   align-items: center;
   justify-content: space-between;
   height: 60px; /* inferred from screenshot */
-  font-family: var(--typography-small-family, 'SimonMono');
+  font-family: var(--typography-small-family, 'Space Mono');
   font-size: var(--typography-small-size, 14px);
   font-weight: var(--typography-small-weight, 400);
 }
@@ -440,7 +440,7 @@ Individual navigation links within menus or content, typically dark charcoal tex
 .nav-link {
   color: var(--color-text-primary, #1A1D1A);
   text-decoration: none;
-  font-family: var(--typography-small-family, 'SimonMono');
+  font-family: var(--typography-small-family, 'Space Mono');
   font-size: var(--typography-small-size, 14px);
   font-weight: var(--typography-small-weight, 400);
   transition: text-decoration var(--motion-duration-fast, 150ms) var(--motion-easing-standard, ease-in);
@@ -475,7 +475,7 @@ A clean, minimalist dropdown menu with a white background and subtle borders, us
 
 .dropdown-menu-item {
   color: var(--color-text-primary, #1A1D1A);
-  font-family: var(--typography-small-family, 'SimonMono');
+  font-family: var(--typography-small-family, 'Space Mono');
   font-size: var(--typography-small-size, 14px);
   font-weight: var(--typography-small-weight, 400);
   padding: var(--spacing-xs, 4px) var(--spacing-md, 16px);
@@ -497,7 +497,7 @@ Default text links, typically dark charcoal, with an underline on hover for clea
 .link-standard {
   color: var(--color-text-primary, #1A1D1A);
   text-decoration: none;
-  font-family: var(--typography-body-family, 'SimonMono');
+  font-family: var(--typography-body-family, 'Space Mono');
   font-size: var(--typography-body-size, 16px);
   font-weight: var(--typography-body-weight, 400);
   transition: text-decoration var(--motion-duration-fast, 150ms) var(--motion-easing-standard, ease-in);
@@ -520,7 +520,7 @@ Links with a muted text color, used for less prominent actions or informational 
 .link-secondary {
   color: var(--color-text-muted, #68675e);
   text-decoration: none;
-  font-family: var(--typography-small-family, 'SimonMono');
+  font-family: var(--typography-small-family, 'Space Mono');
   font-size: var(--typography-small-size, 14px);
   font-weight: var(--typography-small-weight, 400);
   transition: color var(--motion-duration-fast, 150ms) var(--motion-easing-standard, ease-in),
@@ -583,8 +583,8 @@ Jewels by Tulz's design system uses depth sparingly, primarily for interactive e
 ## 7. Do's and Don'ts
 
 ### Do's
--   **Do** use `SyndicatGrotesk` `32px` `400` for main page headings to establish a clear visual hierarchy.
--   **Do** ensure all body text uses `SimonMono` `16px` `400` with a `1.5` line-height for optimal readability.
+-   **Do** use `Syne` `32px` `400` for main page headings to establish a clear visual hierarchy.
+-   **Do** ensure all body text uses `Space Mono` `16px` `400` with a `1.5` line-height for optimal readability.
 -   **Do** apply `64px` of padding to major content sections on desktop to maintain a spacious, premium feel.
 -   **Do** use `text-primary: #1A1D1A` on `background: #FAF9F5` for body text; measured ratio passes high accessibility standards.
 -   **Do** use `accent-gold: #C29B38` for subtle product highlights and price points.
@@ -600,7 +600,7 @@ Jewels by Tulz's design system uses depth sparingly, primarily for interactive e
 -   **Don't** use bold weights for body text; reserve `font-weight: 500` for active navigation links.
 -   **Don't** apply strong, heavy shadows; use only the subtle shadows for overlays.
 -   **Don't** use `accent-gold: #C29B38` for large blocks of text, as it lacks sufficient contrast for readability.
--   **Don't** deviate from `SimonMono` for any body or utility text to maintain brand consistency.
+-   **Don't** deviate from `Space Mono` for any body or utility text to maintain brand consistency.
 -   **Don't** place primary buttons without at least `24px` of vertical spacing from other content.
 -   **Don't** use `background-dark: #1A1D1A` for content sections without pairing it with `text-inverse: #FFFFFF`.
 -   **Don't** use an `opacity: 0.3` disabled state for buttons that are still clickable.
@@ -621,7 +621,7 @@ _Note: breakpoints below are measurements from the source._
 -   **Collapsing Strategy**:
     -   **Navigation**: Collapse main navigation links into a hamburger menu on screens below `768px`.
     -   **Cards**: Product cards transition from multi-column grids to single-column stacking on mobile breakpoints.
-    -   **Typography**: Scale down `SyndicatGrotesk` headings by `4px` to `8px` on mobile for better fit.
+    -   **Typography**: Scale down `Syne` headings by `4px` to `8px` on mobile for better fit.
     -   **Padding**: Reduce horizontal and vertical section padding from `64px` to `24px` on mobile.
     -   **Forms**: Form inputs should occupy `100%` width on mobile, with labels stacked above.
     -   **Spacing**: Adjust `spacing-lg` (`24px`) to `spacing-md` (`16px`) for vertical rhythm on smaller screens.
@@ -643,7 +643,7 @@ _Note: breakpoints below are measurements from the source._
     -   `border-subtle`: `#E8D8B0`
 -   **Iteration Guide**:
     1. Always use `primary: #0F5233` for main CTA backgrounds and `text-inverse: #FFFFFF` for their text.
-    2. Always set `SyndicatGrotesk` for all headings and `SimonMono` for all body and utility text.
+    2. Always set `Syne` for all headings and `Space Mono` for all body and utility text.
     3. Always use the `4px` base spacing scale, preferring `8px`, `16px`, `24px`, `32px`, `64px` for common elements.
     4. Always apply a `2px` `border-radius` to all interactive components and cards.
     5. Always ensure standard cards have a `1px solid border-subtle: #E8D8B0` and no initial shadow.

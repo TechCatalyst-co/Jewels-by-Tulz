@@ -1,6 +1,6 @@
 import {Await, useLoaderData, Link} from 'react-router';
 import type {Route} from './+types/_index';
-import {Suspense, useEffect, useState} from 'react';
+import {Suspense} from 'react';
 import type {RecommendedProductsQuery} from 'storefrontapi.generated';
 import {ProductItem} from '~/components/ProductItem';
 import {MockShopNotice} from '~/components/MockShopNotice';
@@ -82,21 +82,11 @@ export default function Homepage() {
           </Link>
           <p className="hero-note">Made to be worn. Made to be kept.</p>
         </div>
-        <Suspense
-          fallback={
-            <HeroImageFallback />
-          }
-        >
-          <Await resolve={data.recommendedProducts}>
-            {(response) => (
-              <HeroSlideshow
-                products={response?.products.nodes.filter(
-                  (product) => product.featuredImage,
-                ) ?? []}
-              />
-            )}
-          </Await>
-        </Suspense>
+        <div className="home-hero-image-wrap">
+          <Link className="home-hero-slide-link" to="/collections/all" aria-label="Explore all jewelry collections">
+            <img className="home-hero-image" src="/welcome_image.jpg" alt="Jewels by Tulz collection" loading="eager" />
+          </Link>
+        </div>
       </section>
 
       <div className="brand-promises" aria-label="Jewels by Tulz values">
@@ -120,93 +110,6 @@ export default function Homepage() {
           Find your piece
         </Link>
       </section>
-    </div>
-  );
-}
-
-function HeroSlideshow({
-  products,
-}: {
-  products: NonNullable<RecommendedProductsQuery>['products']['nodes'];
-}) {
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  useEffect(() => {
-    if (products.length < 2) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    const interval = window.setInterval(() => {
-      setActiveIndex((index) => (index + 1) % products.length);
-    }, 5000);
-
-    return () => window.clearInterval(interval);
-  }, [products.length]);
-
-  const goPrev = () =>
-    setActiveIndex((index) => (index - 1 + products.length) % products.length);
-  const goNext = () =>
-    setActiveIndex((index) => (index + 1) % products.length);
-
-  const product = products[activeIndex];
-  const image = product?.featuredImage;
-
-  if (!product || !image) return <HeroImageFallback />;
-
-  return (
-    <div className="home-hero-image-wrap">
-      <Link
-        className="home-hero-slide-link"
-        to="/collections/all"
-        aria-label={`Shop the catalog, featuring ${product.title}`}
-      >
-        <img
-          className="home-hero-image"
-          src={image.url}
-          alt={image.altText || product.title}
-          loading="eager"
-        />
-        <span className="hero-image-caption">{product.title}</span>
-      </Link>
-      {products.length > 1 && (
-        <div className="hero-slideshow-controls" aria-label="Slideshow controls">
-          <button
-            type="button"
-            className="hero-slideshow-arrow hero-slideshow-arrow-prev"
-            onClick={goPrev}
-            aria-label="Previous slide"
-          >
-            ‹
-          </button>
-          <button
-            type="button"
-            className="hero-slideshow-arrow hero-slideshow-arrow-next"
-            onClick={goNext}
-            aria-label="Next slide"
-          >
-            ›
-          </button>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function HeroImageFallback() {
-  return (
-    <div className="home-hero-image-wrap">
-      <Link
-        className="home-hero-slide-link"
-        to="/collections/all"
-        aria-label="Explore the jewelry catalog"
-      >
-        <img
-          className="home-hero-image"
-          src="/jewelry-campaign.jpg"
-          alt="Sculptural gold earrings resting on pale stone"
-          loading="eager"
-        />
-        <span className="hero-image-caption">The everyday, elevated</span>
-      </Link>
     </div>
   );
 }
