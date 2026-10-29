@@ -72,7 +72,7 @@ export default function Homepage() {
       {data.isShopLinked ? null : <MockShopNotice />}
       <section className="home-hero" aria-labelledby="home-hero-heading">
         <div className="home-hero-copy">
-          <p className="eyebrow">Jewels by Tulz · Fine jewelry</p>
+          <p className="eyebrow">JEWELRY BY TULZ · FINE JEWELRY</p>
           <h1 id="home-hero-heading">A little brilliance, every day.</h1>
           <p className="home-hero-description">
             Thoughtfully chosen pieces for the moments that make a life yours.
