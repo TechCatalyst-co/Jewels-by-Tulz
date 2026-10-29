@@ -4,6 +4,8 @@ import {Suspense} from 'react';
 import type {RecommendedProductsQuery} from 'storefrontapi.generated';
 import {ProductItem} from '~/components/ProductItem';
 import {MockShopNotice} from '~/components/MockShopNotice';
+import {FeaturedCollections} from '~/components/FeaturedCollections';
+import {FeaturedCategories} from '~/components/FeaturedCategories';
 
 export const meta: Route.MetaFunction = () => {
   return [
@@ -99,17 +101,10 @@ export default function Homepage() {
 
       <RecommendedProducts products={data.recommendedProducts} />
 
-      <section className="home-story" aria-labelledby="home-story-heading">
-        <p className="eyebrow">A more personal kind of luxury</p>
-        <h2 id="home-story-heading">For the days worth remembering.</h2>
-        <p>
-          The best pieces don’t wait for a special occasion. They become part of
-          the story you’re already wearing.
-        </p>
-        <Link className="button-secondary" to='/collections/all'>
-          Find your piece
-        </Link>
-      </section>
+      <FeaturedCollections />
+
+      <FeaturedCategories />
+
     </div>
   );
 }
