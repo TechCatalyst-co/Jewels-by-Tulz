@@ -82,7 +82,6 @@ export default function Homepage() {
           <Link className="button-primary" to={collectionUrl}>
             Discover the collection
           </Link>
-          <p className="hero-note">Made to be worn. Made to be kept.</p>
         </div>
         <div className="home-hero-image-wrap">
           <Link className="home-hero-slide-link" to="/collections/all" aria-label="Explore all jewelry collections">

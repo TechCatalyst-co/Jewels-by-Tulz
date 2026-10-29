@@ -26,7 +26,6 @@ export function FeaturedCategories() {
     <section className="featured-categories" aria-labelledby="featured-categories-heading">
       <div className="featured-categories-inner">
         <div className="featured-categories-heading">
-          <p className="eyebrow">The finishing touch</p>
           <h2 id="featured-categories-heading">Shop by category</h2>
         </div>
         <div className="featured-categories-grid">

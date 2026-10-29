@@ -833,14 +833,6 @@ button.reset:hover:not(:has(> *)) {
   color: var(--color-light);
 }
 
-.hero-note {
-  color: var(--color-text-muted);
-  font-family: var(--font-sans);
-  font-size: 12px;
-  margin: 16px 0 0;
-  max-width: 40ch;
-}
-
 .home-hero-image-wrap {
   aspect-ratio: 4 / 5;
   background: var(--color-background-subtle);
@@ -1140,11 +1132,6 @@ button.reset:hover:not(:has(> *)) {
   text-align: center;
 }
 
-.featured-categories-heading .eyebrow {
-  color: var(--color-accent-gold);
-  margin-bottom: 8px;
-}
-
 .featured-categories-heading h2 {
   color: var(--color-primary);
   font-family: 'Playfair Display', Georgia, serif;
@@ -1189,45 +1176,6 @@ button.reset:hover:not(:has(> *)) {
 .products-empty {
   color: var(--color-text-muted);
   font-size: 12px;
-}
-
-.home-story {
-  align-items: center;
-  background: var(--color-primary);
-  color: var(--color-light);
-  display: flex;
-  flex-direction: column;
-  padding: 64px 24px;
-  text-align: center;
-}
-
-.home-story .eyebrow {
-  color: #e8d8b0;
-  margin-bottom: 12px;
-}
-
-.home-story h2 {
-  font-size: 34px;
-  line-height: 1.15;
-  margin: 0;
-  max-width: 16ch;
-}
-
-.home-story > p:not(.eyebrow) {
-  color: rgba(255, 255, 255, 0.84);
-  font-size: 12px;
-  margin: 16px 0 24px;
-  max-width: 50ch;
-}
-
-.home-story .button-secondary {
-  border-color: var(--color-background-subtle);
-  color: var(--color-light);
-}
-
-.home-story .button-secondary:hover {
-  background: var(--color-background-subtle);
-  color: var(--color-dark);
 }
 
 @media (min-width: 768px) {
@@ -1320,13 +1268,6 @@ button.reset:hover:not(:has(> *)) {
     font-size: 32px;
   }
 
-  .home-story {
-    padding: 88px 24px;
-  }
-
-  .home-story h2 {
-    font-size: 44px;
-  }
 }
 
 @media (min-width: 1024px) {
