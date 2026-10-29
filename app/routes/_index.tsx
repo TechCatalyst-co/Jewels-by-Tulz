@@ -73,7 +73,7 @@ export default function Homepage() {
       <section className="home-hero" aria-labelledby="home-hero-heading">
         <div className="home-hero-copy">
           <p className="eyebrow">JEWELRY BY TULZ · FINE JEWELRY</p>
-          <h1 id="home-hero-heading">A little brilliance, every day.</h1>
+          <h1 id="home-hero-heading">Fine jewelry. Everyday brilliance.</h1>
           <p className="home-hero-description">
             Thoughtfully chosen pieces for the moments that make a life yours.
           </p>
@@ -125,10 +125,7 @@ function RecommendedProducts({
       aria-labelledby="recommended-products"
     >
       <div className="section-heading">
-        <div>
-          <p className="eyebrow">A few forever favorites</p>
-          <h2 id="recommended-products">The pieces you’ll reach for.</h2>
-        </div>
+        <h2 id="recommended-products">New Arrivals</h2>
         <Link className="text-link" to="/collections/all">
           View all jewelry <span aria-hidden="true">→</span>
         </Link>
