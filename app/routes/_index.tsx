@@ -87,7 +87,7 @@ export default function Homepage() {
         </div>
         <div className="home-hero-image-wrap">
           <Link className="home-hero-slide-link" to="/collections/all" aria-label="Explore all jewelry collections">
-            <img className="home-hero-image" src="/welcome_image.jpg" alt="Jewels by Tulz collection" loading="eager" />
+            <img className="home-hero-image" src="/welcome_image.png" alt="Jewels by Tulz collection" loading="eager" />
           </Link>
         </div>
       </section>
