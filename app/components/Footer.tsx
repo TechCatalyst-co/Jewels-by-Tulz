@@ -1,5 +1,6 @@
 import {Suspense} from 'react';
-import {Await, NavLink} from 'react-router';
+import {Await} from 'react-router';
+import {FaInstagram, FaFacebook, FaPinterest} from 'react-icons/fa';
 import type {FooterQuery, HeaderQuery} from 'storefrontapi.generated';
 
 interface FooterProps {
@@ -18,13 +19,145 @@ export function Footer({
       <Await resolve={footerPromise}>
         {(footer) => (
           <footer className="footer">
-            {footer?.menu && header.shop.primaryDomain?.url && (
-              <FooterMenu
-                menu={footer.menu}
-                primaryDomainUrl={header.shop.primaryDomain.url}
-                publicStoreDomain={publicStoreDomain}
-              />
-            )}
+            <div className="footer-columns">
+              <div className="footer-column">
+                <h3 className="footer-heading">Help &amp; Info</h3>
+                <ul className="footer-link-list">
+                  <li>
+                    <button type="button" onClick={(event) => placeholderClick(event)}>
+                      Customer Support
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" onClick={(event) => placeholderClick(event)}>
+                      Shipping
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" onClick={(event) => placeholderClick(event)}>
+                      Returns
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" onClick={(event) => placeholderClick(event)}>
+                      Contact Us
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" onClick={(event) => placeholderClick(event)}>
+                      FAQs
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" onClick={(event) => placeholderClick(event)}>
+                      Account
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" onClick={(event) => placeholderClick(event)}>
+                      Privacy Settings
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" onClick={(event) => placeholderClick(event)}>
+                      Privacy Policy
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" onClick={(event) => placeholderClick(event)}>
+                      Sitemap
+                    </button>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="footer-column">
+                <h3 className="footer-heading">Newsletter</h3>
+                <p className="footer-newsletter-incentive">
+                  Subscribe and get 10% off your first order
+                </p>
+                <form
+                  className="footer-newsletter-form"
+                  onSubmit={(event) => {
+                    event.preventDefault();
+                    // TODO: connect newsletter subscription state to the mailing
+                    // list API (capture email, apply 10% discount incentive).
+                  }}
+                >
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    aria-label="Email address"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    className="footer-newsletter-button"
+                  >
+                    SUBSCRIBE
+                  </button>
+                </form>
+              </div>
+
+              <div className="footer-column">
+                <h3 className="footer-heading">Contact</h3>
+                <ul className="footer-link-list">
+                  <li>
+                    <button type="button" onClick={(event) => placeholderClick(event)}>
+                      Store Hours
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" onClick={(event) => placeholderClick(event)}>
+                      About Us
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" onClick={(event) => placeholderClick(event)}>
+                      Press
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="footer-subbar">
+              <span className="footer-copyright">
+                &copy; {/* TODO: wire dynamic copyright date / legal route */}
+                Jewels by Tulz
+              </span>
+              <button
+                type="button"
+                className="footer-terms-link"
+                onClick={(event) => placeholderClick(event)}
+              >
+                Terms and Policies
+              </button>
+              <div className="footer-social">
+                <button
+                  type="button"
+                  aria-label="Instagram"
+                  onClick={(event) => placeholderClick(event)}
+                >
+                  <FaInstagram size={18} />
+                </button>
+                <button
+                  type="button"
+                  aria-label="Facebook"
+                  onClick={(event) => placeholderClick(event)}
+                >
+                  <FaFacebook size={18} />
+                </button>
+                <button
+                  type="button"
+                  aria-label="Pinterest"
+                  onClick={(event) => placeholderClick(event)}
+                >
+                  <FaPinterest size={18} />
+                </button>
+              </div>
+            </div>
           </footer>
         )}
       </Await>
@@ -32,98 +165,7 @@ export function Footer({
   );
 }
 
-function FooterMenu({
-  menu,
-  primaryDomainUrl,
-  publicStoreDomain,
-}: {
-  menu: FooterQuery['menu'];
-  primaryDomainUrl: FooterProps['header']['shop']['primaryDomain']['url'];
-  publicStoreDomain: string;
-}) {
-  return (
-    <nav className="footer-menu" role="navigation">
-      {(menu || FALLBACK_FOOTER_MENU).items.map((item) => {
-        if (!item.url) return null;
-        // if the url is internal, we strip the domain
-        const url =
-          item.url.includes('myshopify.com') ||
-          item.url.includes(publicStoreDomain) ||
-          item.url.includes(primaryDomainUrl)
-            ? new URL(item.url).pathname
-            : item.url;
-        const isExternal = !url.startsWith('/');
-        return isExternal ? (
-          <a href={url} key={item.id} rel="noopener noreferrer" target="_blank">
-            {item.title}
-          </a>
-        ) : (
-          <NavLink
-            end
-            key={item.id}
-            prefetch="intent"
-            style={activeLinkStyle}
-            to={url}
-          >
-            {item.title}
-          </NavLink>
-        );
-      })}
-    </nav>
-  );
-}
-
-const FALLBACK_FOOTER_MENU = {
-  id: 'gid://shopify/Menu/199655620664',
-  items: [
-    {
-      id: 'gid://shopify/MenuItem/461633060920',
-      resourceId: 'gid://shopify/ShopPolicy/23358046264',
-      tags: [],
-      title: 'Privacy Policy',
-      type: 'SHOP_POLICY',
-      url: '/policies/privacy-policy',
-      items: [],
-    },
-    {
-      id: 'gid://shopify/MenuItem/461633093688',
-      resourceId: 'gid://shopify/ShopPolicy/23358013496',
-      tags: [],
-      title: 'Refund Policy',
-      type: 'SHOP_POLICY',
-      url: '/policies/refund-policy',
-      items: [],
-    },
-    {
-      id: 'gid://shopify/MenuItem/461633126456',
-      resourceId: 'gid://shopify/ShopPolicy/23358111800',
-      tags: [],
-      title: 'Shipping Policy',
-      type: 'SHOP_POLICY',
-      url: '/policies/shipping-policy',
-      items: [],
-    },
-    {
-      id: 'gid://shopify/MenuItem/461633159224',
-      resourceId: 'gid://shopify/ShopPolicy/23358079032',
-      tags: [],
-      title: 'Terms of Service',
-      type: 'SHOP_POLICY',
-      url: '/policies/terms-of-service',
-      items: [],
-    },
-  ],
-};
-
-function activeLinkStyle({
-  isActive,
-  isPending,
-}: {
-  isActive: boolean;
-  isPending: boolean;
-}) {
-  return {
-    fontWeight: isActive ? 'bold' : undefined,
-    color: isPending ? 'grey' : 'white',
-  };
+function placeholderClick(event: React.MouseEvent) {
+  event.preventDefault();
+  // TODO: wire up click handler for placeholder link/button
 }
