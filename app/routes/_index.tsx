@@ -3,6 +3,7 @@ import type {Route} from './+types/_index';
 import {Suspense} from 'react';
 import type {RecommendedProductsQuery} from 'storefrontapi.generated';
 import {ProductItem} from '~/components/ProductItem';
+import {PromoDiscountWidget} from '~/components/PromoDiscountWidget';
 import {MockShopNotice} from '~/components/MockShopNotice';
 import {FeaturedCollections} from '~/components/FeaturedCollections';
 import {FeaturedCategories} from '~/components/FeaturedCategories';
@@ -72,6 +73,7 @@ export default function Homepage() {
   return (
     <div className="home">
       {data.isShopLinked ? null : <MockShopNotice />}
+      <PromoDiscountWidget />
       <section className="home-hero" aria-labelledby="home-hero-heading">
         <div className="home-hero-copy">
           <p className="eyebrow">JEWELRY BY TULZ · FINE JEWELRY</p>
