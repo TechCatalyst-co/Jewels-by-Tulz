@@ -3,6 +3,7 @@ import type {Route} from './+types/_index';
 import {Suspense} from 'react';
 import type {RecommendedProductsQuery} from 'storefrontapi.generated';
 import {ProductItem} from '~/components/ProductItem';
+import welcomeImage from '~/assets/jewels-by-tulz-welcome-image.png';
 import {PromoDiscountWidget} from '~/components/PromoDiscountWidget';
 import {MockShopNotice} from '~/components/MockShopNotice';
 import {FeaturedCollections} from '~/components/FeaturedCollections';
@@ -76,10 +77,10 @@ export default function Homepage() {
       <PromoDiscountWidget />
       <section className="home-hero" aria-labelledby="home-hero-heading">
         <div className="home-hero-copy">
-          <p className="eyebrow">JEWELRY BY TULZ · FINE JEWELRY</p>
-          <h1 id="home-hero-heading">Fine jewelry. Everyday brilliance.</h1>
+          <p className="eyebrow">JEWELRY BY TULZ · MORE THAN JEWELRY</p>
+          <h1 id="home-hero-heading">Prettier Things. Happier People.</h1>
           <p className="home-hero-description">
-            Thoughtfully chosen pieces for the moments that make a life yours.
+            Come on in... Take a click around. <br></br>If you have any questions, I'm here to answer them all.
           </p>
           <Link className="button-primary" to={collectionUrl}>
             Discover the collection
@@ -87,7 +88,7 @@ export default function Homepage() {
         </div>
         <div className="home-hero-image-wrap">
           <Link className="home-hero-slide-link" to="/collections/all" aria-label="Explore all jewelry collections">
-            <img className="home-hero-image" src="/welcome_image.png" alt="Jewels by Tulz collection" loading="eager" />
+            <img className="home-hero-image" src={welcomeImage} alt="Jewels by Tulz collection" loading="eager" />
           </Link>
         </div>
       </section>
